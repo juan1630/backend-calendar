@@ -1,16 +1,13 @@
 const express = require('express');
-
 const app = express();
-//Rutas
+// importamos el env
+require('dotenv').config();
 
-app.get('/', (req, res) => {
 
-    return resp.json({
-        ok: true
-    })
+// midleware de los archivos publicos
+// Directorio publico 
+app.use( express.static('public'))
 
-});
-
-app.listen( 3001  , ()=> {
-    console.log('listening on port 3001')
+app.listen( process.env.PORT  , ()=> {
+    console.log('listening on port ' + process.env.PORT)
 });
