@@ -1,16 +1,24 @@
 const express = require('express');
-
+const { connectToDB } = require('./database/db-conf');
 const app = express();
-//Rutas
 
-app.get('/', (req, res) => {
+// importamos el env
+require('dotenv').config();
 
-    return resp.json({
-        ok: true
-    })
+// midleware de los archivos publicos
+// Directorio publico 
+app.use( express.static('public'))
 
-});
+//conexion a la DB
 
-app.listen( 3001  , ()=> {
-    console.log('listening on port 3001')
+connectToDB();
+
+//  Parseo de los json a un objeto vaido
+app.use( express.json());
+// Rutas de autenticacion
+app.use('/api/auth', require('./routes/auth'));
+
+
+app.listen( process.env.PORT  , ()=> {
+    console.log('listening on port ' + process.env.PORT)
 });
