@@ -8,7 +8,7 @@ const { createUser, revalidateToken, loginUser } = require('../controllers/auth'
 
 const {  check } = require('express-validator');
 
-router.get('/new', 
+router.post('/new', 
 [
     //validamos que el nombre sea obligatorio 
     check('name', 'El nombre es requerido').not().isEmpty(),
