@@ -1,12 +1,23 @@
 const { response } = require('express');
 const  Events = require('../models/Evento');
 
-const getAllEvents = (req, resp = response) => {
+const getAllEvents = async(req, resp = response) => {
 
-    return resp.status(200).json({
-        ok:true,
-        msg: 'Todo encontrado'
-    });
+    try {
+        const events = await Events.find().populate("user", "name _id")
+        
+        return resp.status(200).json({
+            ok:true,
+            events
+        });
+
+    } catch (error) {
+  
+        return resp.status(500).json({
+            ok:false,
+            msg: 'No se pudo ver'
+        });
+    }
 
 }
 
