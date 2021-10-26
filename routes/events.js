@@ -23,7 +23,12 @@ router.post('/new',
                 ],
                 ceateAnEvent);
 
-router.put('/update/:id',updateAnEvent);
+router.put('/update/:id',  [
+    check('title', 'El titulo es obligatorio').not().isEmpty(),
+    check('start','La fecha de inicio es requerida').custom( isDate),
+    check('end','La fecha de termino es requerida').custom( isDate),
+    valiateFileds
+],updateAnEvent);
 
 router.delete('/delete/:id',deleteAnEvent);
 
