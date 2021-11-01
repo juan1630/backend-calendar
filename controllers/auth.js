@@ -11,7 +11,6 @@ const { createJwt } = require('../helppers/jwt')
 const createUser = async (req, res=response) => {
 
     const { email, password } = req.body;
-
     try {
         
         let usuario = await Usuario.findOne({ email});
@@ -22,11 +21,11 @@ const createUser = async (req, res=response) => {
                     ok: false,
                     msg: 'El correo ya ha sido registrado' 
 
-                })
+                });
         }
 
         usuario = new Usuario(req.body);
-            // recive el numero de vuletas que le hara a la contraseña
+            // recibe el numero de vuletas que le hara a la contraseña
         const salt = bcrypt.genSaltSync();
         usuario.password = bcrypt.hashSync( password, salt );
 
