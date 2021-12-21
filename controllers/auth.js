@@ -111,8 +111,8 @@ const revalidateToken = async(req, res) => {
 
 
     const { uid, name } = req;  
-
     const token  = await createJwt(uid, name);
+
 
     res.json({
         ok: true,
@@ -120,7 +120,8 @@ const revalidateToken = async(req, res) => {
         uid, 
         name,
         token
-    })
+    });
+
 }
 
 module.exports = {
