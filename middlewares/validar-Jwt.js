@@ -11,7 +11,8 @@ const validarJwt = (req = request, resp =response ,next) => {
         return resp.status(401)
         .json({ 
             ok: false,
-            msg : 'No tienes las credenciales'
+            msg : 'No tienes las credenciales',
+            name:null
         });
     }
 
