@@ -11,6 +11,7 @@ const { createJwt } = require('../helppers/jwt')
 const createUser = async (req, res=response) => {
 
     const { email, password } = req.body;
+    console.log( req.body );
     try {
         
         let usuario = await Usuario.findOne({ email});
@@ -56,6 +57,7 @@ const createUser = async (req, res=response) => {
 
 const loginUser = async (req, res= response) => {
 
+    console.log( req.body );
     const {  email, password } = req.body;
 
     try {

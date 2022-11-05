@@ -7,7 +7,7 @@ const connectToDB = async() => {
             useNewUrlParser: true,
         });
         
-        console.log('Db online');
+        console.log('Db online', process.env.DB_CONN);
 
     } catch (error) {
         
