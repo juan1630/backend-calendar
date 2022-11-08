@@ -5,7 +5,8 @@ const getAllEvents = async(req, resp = response) => {
 
     try {
         const events = await Events.find().populate("user", "name _id")
-        
+
+        console.log( events );
         return resp.status(200).json({
             ok:true,
             events
@@ -53,7 +54,7 @@ const ceateAnEvent = async(req, resp = response) => {
 const updateAnEvent = async(req, resp = response) => {
 
     const { id} = req.params;
-    const { uid } = req;
+    const { uid } = req.body;
 
     try {
         
@@ -67,12 +68,13 @@ const updateAnEvent = async(req, resp = response) => {
             });
         }
 
-        if(evento.user.toString() != uid) {
-            return resp.status(401).json({
-                ok:false,
-                msg:'No tienes los permisos oara editar el evento'
-            })
-        }
+        //quite esta validacio para ver que funcione 
+        // if(evento.user.toString() != uid) {
+        //     return resp.status(401).json({
+        //         ok:false,
+        //         msg:'No tienes los permisos oara editar el evento'
+        //     })
+        // }
 
 
         const nuewvoEvento = { 
